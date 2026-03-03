@@ -8,6 +8,7 @@ Repository: https://github.com/SocialCareData/data-model
 Editor: The ODI Development Team, https://github.com/theodi
 Abstract: This document specifies a standardized Socail Care data model for consistent data representation and exchange.
 Markup Shorthands: markdown yes
+</pre>
 
 <style>
   .status-red {
@@ -16,7 +17,6 @@ Markup Shorthands: markdown yes
     font-size: 0.75em;
   }
 </style>
-</pre>
 
 Status of This Document {#status}
 ==================================
@@ -264,31 +264,47 @@ Vocabularies {#vocabularies}
 ============================
 
 ## Name Use ## {#vocab-name-use}
-
+        
 Corresponds to FHIR [Name Use](https://build.fhir.org/valueset-name-use.html) and indicates the intended purpose of this name. It allows applications to select the appropriate name for a specific context from a set of names. Names can be assumed to be current unless explicitly marked as temporary or old.
-
-<dl class="definition-list" id="NameUse">
-<dt><dfn>usual</dfn></dt>
-  <dd>Known as/conventional/the one you normally use.</dd>
-
-  <dt><dfn>official</dfn></dt>
-  <dd>The formal name as registered in an official (government) registry, but which name might not be commonly used. May be called "legal name".</dd>
-
-  <dt><dfn>temp</dfn></dt>
-  <dd>A temporary name. Name.period can provide more detailed information. This may also be used for temporary names assigned at birth or in emergency situations.</dd>
-
-  <dt><dfn>nickname</dfn></dt>
-  <dd>A name that is used to address the person in an informal manner, but is not part of their formal or usual name.</dd>
-
-  <dt><dfn>anonymous</dfn></dt>
-  <dd>Anonymous assigned name, alias, or pseudonym (used to protect a person's identity for privacy reasons).</dd>
-
-  <dt><dfn>old</dfn></dt>
-  <dd>This name is no longer in use (or was never correct, but retained for records).</dd>
-
-  <dt><dfn>maiden</dfn></dt>
-  <dd>A name used prior to changing name because of marriage. This name use is for use by applications that collect and store names that were used prior to a marriage. Marriage naming customs vary greatly around the world, and are constantly changing. This term is not gender specific. The use of this term does not imply any particular history for a person's name.</dd>
-</dl>
+        
+<table class="data" id="NameUse">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>usual</code></td>
+      <td>Known as/conventional/the one you normally use.</td>
+    </tr>
+    <tr>
+      <td><code>official</code></td>
+      <td>The formal name as registered in an official (government) registry, but which name might not be commonly used. May be called "legal name".</td>
+    </tr>
+    <tr>
+      <td><code>temp</code></td>
+      <td>A temporary name. Name.period can provide more detailed information. This may also be used for temporary names assigned at birth or in emergency situations.</td>
+    </tr>
+    <tr>
+      <td><code>nickname</code></td>
+      <td>A name that is used to address the person in an informal manner, but is not part of their formal or usual name.</td>
+    </tr>
+    <tr>
+      <td><code>anonymous</code></td>
+      <td>Anonymous assigned name, alias, or pseudonym (used to protect a person's identity for privacy reasons).</td>
+    </tr>
+    <tr>
+      <td><code>old</code></td>
+      <td>This name is no longer in use (or was never correct, but retained for records).</td>
+    </tr>
+    <tr>
+      <td><code>maiden</code></td>
+      <td>A name used prior to changing name because of marriage. This name use is for use by applications that collect and store names that were used prior to a marriage. Marriage naming customs vary greatly around the world, and are constantly changing. This term is not gender specific. The use of this term does not imply any particular history for a person's name.</td>
+    </tr>
+  </tbody>
+</table>
 
 ##  Date Accuracy Indicator ## {#vocab-date-accuracy}
 
@@ -309,61 +325,73 @@ Example:
 - UAA – Day unknown, month and year accurate
 
 ## Person Gender Code ## {#vocab-gender}
-
+        
 The person’s stated gender. This information does not pertain to biological sex. It aligns with FHIR [PersonStatedGenderCode](https://simplifier.net/hl7fhircareconnectbaselineforstu3/careconnect-nhsdatadictionary-personstatedgender-1) and PDS [PERSON_STATED_GENDER_CODE](https://archive.datadictionary.nhs.uk/DD%20Release%20May%202024/data_elements/person_stated_gender_code.html) definitions.
-
-<dl class="definition-list" id="PersonGenderCode">
-  <dt><dfn code-for="PersonGenderCode">1</dfn></dt>
-  <dd>
-    <p><strong>Display:</strong> Male</p>
-    <p>The person identifies as male.</p>
-  </dd>
-
-  <dt><dfn code-for="PersonGenderCode">2</dfn></dt>
-  <dd>
-    <p><strong>Display:</strong> Female</p>
-    <p>The person identifies as female.</p>
-  </dd>
-
-  <dt><dfn code-for="PersonGenderCode">9</dfn></dt>
-  <dd>
-    <p><strong>Display:</strong> Indeterminate</p>
-    <p>Unable to be classified as either male or female.</p>
-  </dd>
-
-  <dt><dfn code-for="PersonGenderCode">X</dfn></dt>
-  <dd>
-    <p><strong>Display:</strong> Not Known</p>
-    <p>Not recorded or information is unavailable.</p>
-  </dd>
-</dl>
+        
+<table class="data" id="PersonGenderCode">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Display</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>1</code></td>
+      <td>Male</td>
+      <td>The person identifies as male.</td>
+    </tr>
+    <tr>
+      <td><code>2</code></td>
+      <td>Female</td>
+      <td>The person identifies as female.</td>
+    </tr>
+    <tr>
+      <td><code>9</code></td>
+      <td>Indeterminate</td>
+      <td>Unable to be classified as either male or female.</td>
+    </tr>
+    <tr>
+      <td><code>X</code></td>
+      <td>Not Known</td>
+      <td>Not recorded or information is unavailable.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Person Sex Code ## {#vocab-sex}
-
+        
 Observed phenotypic sex. It aligns with PDS [PERSON PHENOTYPIC SEX](https://archive.datadictionary.nhs.uk/DD%20Release%20July%202024/data_elements/person_phenotypic_sex.html) definitions.
-
-<dl class="definition-list" id="PersonSexCode">
-  <dt><dfn code-for="PersonSexCode">1</dfn></dt>
-  <dd>
-    <p><strong>Display:</strong> Male</p>
-    <p>The person identifies as male.</p>
-  </dd>
-
-  <dt><dfn code-for="PersonSexCode">2</dfn></dt>
-  <dd>
-    <p><strong>Display:</strong> Female</p>
-    <p>The person identifies as female.</p>
-  </dd>
-
-  <dt><dfn code-for="PersonSexCode">9</dfn></dt>
-  <dd>
-    <p><strong>Display:</strong> Indeterminate</p>
-    <p>Unable to be classified as either male or female.</p>
-  </dd>
-
-  <dt><dfn code-for="PersonSexCode">X</dfn></dt>
-  <dd>
-    <p><strong>Display:</strong> Not Known</p>
-    <p>Not recorded or information is unavailable.</p>
-  </dd>
-</dl>
+        
+<table class="data" id="PersonSexCode">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Display</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>1</code></td>
+      <td>Male</td>
+      <td>The person identifies as male.</td>
+    </tr>
+    <tr>
+      <td><code>2</code></td>
+      <td>Female</td>
+      <td>The person identifies as female.</td>
+    </tr>
+    <tr>
+      <td><code>9</code></td>
+      <td>Indeterminate</td>
+      <td>Unable to be classified as either male or female.</td>
+    </tr>
+    <tr>
+      <td><code>X</code></td>
+      <td>Not Known</td>
+      <td>Not recorded or information is unavailable.</td>
+    </tr>
+  </tbody>
+</table>
