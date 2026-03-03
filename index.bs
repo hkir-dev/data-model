@@ -73,5 +73,67 @@ The Person entity defines the standardized structure for representing individual
 
 This entity is designed to support interoperability across children’s and adult social care systems, enabling consistent identification and linkage of records. Its primary purpose is to facilitate the implementation of “Single View” systems, thereby improving multi-agency information sharing and coordination.
 
+<table class="data">
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Card.</th>
+      <th>Description / Alignment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Identifier</code></td>
+      <td>Object</td>
+      <td>1..*</td>
+      <td>Unique identifiers associated with the person.</td>
+    </tr>
+    <tr>
+      <td>└─ <code>value</code></td>
+      <td>String</td>
+      <td>1..1</td>
+      <td>A single unique identifier (e.g., NHS number).<br>
+          <small>FHIR: <code>Identifier.value</code> | PDS: <code>UNIQUE_REFERENCE</code></small></td>
+    </tr>
+    <tr>
+      <td>└─ <code>system</code></td>
+      <td>URI</td>
+      <td>1..1</td>
+      <td>The system the ID adheres to.<br>
+          <small>FHIR: <code>Identifier.system</code></small></td>
+    </tr>
+
+    <tr>
+      <td><code>Name</code></td>
+      <td>Object</td>
+      <td>1..1</td>
+      <td>Container for name parts.</td>
+    </tr>
+    <tr>
+      <td>└─ <code>familyName</code></td>
+      <td>String</td>
+      <td>1..*</td>
+      <td>Surname or family name.<br>
+          <small>FHIR: <code>HumanName.family</code> | PDS: <code>FAMILY_NAME</code></small></td>
+    </tr>
+    <tr>
+      <td>└─ <code>givenNames</code></td>
+      <td>String</td>
+      <td>1..*</td>
+      <td>First and middle names.<br>
+          <small>FHIR: <code>HumanName.given</code> | PDS: <code>GIVEN_NAME</code></small></td>
+    </tr>
+
+    <tr>
+      <td><code>Gender</code></td>
+      <td>Code</td>
+      <td>1..1</td>
+      <td>The person’s stated gender. (Non-biological).<br>
+          See: <a href="#vocab-gender">PersonGenderCode</a></td>
+    </tr>
+  </tbody>
+</table>
+
 
 
