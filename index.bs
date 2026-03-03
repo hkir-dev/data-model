@@ -1,0 +1,90 @@
+<pre class='metadata'>
+Title: Data Model Specification
+Shortname: data-model
+Level: 1
+Status: LD
+ED: https://hkir-dev.github.io/data-model/
+Repository: https://github.com/hkir-dev/data-model
+Editor: HKIR Development Team, https://github.com/hkir-dev
+Abstract: This document specifies a standardized data model for consistent data representation and exchange.
+Markup Shorthands: markdown yes
+</pre>
+
+Status of This Document {#status}
+==================================
+
+<em>This section describes the status of this document at the time of its publication.</em>
+
+This is a work in progress and is subject to change. This document is maintained by the HKIR Development Team and is intended to serve as a reference for standardized data modeling practices.
+
+Introduction {#intro}
+=====================
+
+This specification defines a comprehensive data model for structuring and organizing data in a standardized format. The data model provides a foundation for consistent data representation, validation, and exchange across different systems and applications.
+
+## Purpose and Scope ## {#purpose}
+
+This data model aims to:
+
+* Provide a clear and consistent structure for data representation
+* Enable interoperability between different systems
+* Support extensibility for future enhancements
+* Facilitate data validation and quality assurance
+
+Key Concepts {#concepts}
+========================
+
+This section introduces the fundamental concepts that form the basis of the data model.
+
+## Core Principles ## {#principles}
+
+The data model is built on the following core principles:
+
+* **Consistency**: Data structures follow consistent patterns and naming conventions
+* **Extensibility**: The model can be extended to accommodate new requirements
+* **Interoperability**: Data can be exchanged between different systems
+* **Validation**: Data structures include validation rules to ensure data quality
+
+## Terminology ## {#terminology}
+
+<dfn export>Entity</dfn>
+: A discrete unit of data with defined attributes and relationships
+
+<dfn export>Attribute</dfn>
+: A property or characteristic of an entity
+
+<dfn export>Relationship</dfn>
+: A connection or association between two or more entities
+
+Data Model {#data-model}
+=========================
+
+This section defines the core data structures and their relationships.
+
+## Entity Structure ## {#entity-structure}
+
+Each entity in the data model consists of:
+
+* A unique identifier
+* A set of attributes that describe the entity
+* Optional relationships to other entities
+
+## Data Types ## {#data-types}
+
+The data model supports the following data types:
+
+* **String**: Text data
+* **Number**: Numeric data (integers and floating-point)
+* **Boolean**: True/false values
+* **Date**: Temporal data
+* **Array**: Ordered collections of values
+* **Object**: Structured data with nested attributes
+
+## Validation Rules ## {#validation}
+
+Data validation ensures that:
+
+* Required attributes are present
+* Data types are correct
+* Values fall within acceptable ranges
+* Relationships reference valid entities

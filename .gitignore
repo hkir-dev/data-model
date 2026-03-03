@@ -1,0 +1,19 @@
+# Build outputs
+index.html
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Bikeshed
+.bikeshed-state/
+
+# OS
+.DS_Store
+Thumbs.db
