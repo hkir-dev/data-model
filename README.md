@@ -52,4 +52,4 @@ To contribute to this specification:
 
 ## License
 
-This specification is maintained by the HKIR Development Team.
+This specification is maintained by the ODI Development Team.
