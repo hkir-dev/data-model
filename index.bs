@@ -494,7 +494,9 @@ Observed phenotypic sex. It aligns with PDS [PERSON PHENOTYPIC SEX](https://arch
 
 Types of personal relationships between two living subjects (ex. parent, sibling, unrelated friend, neighbor). It aligns with FHIR [PersonalRelationshipRoleType](https://terminology.hl7.org/5.1.0/ValueSet-v3-PersonalRelationshipRoleType.html) definitions.
 
-|INCLUDE vocabulary/person-relationship-code.html|
+<pre class=include-raw>
+	path: vocabulary/person-relationship-code.html
+</pre>
 
 ## Professional Relationship Code ## {#vocab-professional-rel-code}
 
