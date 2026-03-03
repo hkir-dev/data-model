@@ -8,6 +8,14 @@ Repository: https://github.com/SocialCareData/data-model
 Editor: The ODI Development Team, https://github.com/theodi
 Abstract: This document specifies a standardized Socail Care data model for consistent data representation and exchange.
 Markup Shorthands: markdown yes
+
+<style>
+  .status-red {
+    font-family: "Courier New", Courier, monospace;
+    color: #d73a49; /* A professional-looking "standard" red */
+    font-size: 0.75em;
+  }
+</style>
 </pre>
 
 Status of This Document {#status}
@@ -65,7 +73,7 @@ This section defines the core data structures and their relationships for social
 
 This diagram illustrates the resources and relationships that are introduced in the following sections.
 
-<img alt="Social Care CMS data model diagram" src="images/SC_data_model.drawio.png" width="574" height="677">
+<img alt="Social Care CMS data model diagram" src="images/SC_data_model.drawio.png" width="717" height="845">
 
 ### Person ### {#person}
 
@@ -77,46 +85,53 @@ This entity is designed to support interoperability across children’s and adul
   <thead>
     <tr>
       <th>Field</th>
+      <th>Status</th>
       <th>Type</th>
-      <th>Card.</th>
       <th>Description / Alignment</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code>Identifier</code></td>
+      <td><code>identifiers</code></td>
+      <td><span class="status-red">REQUIRED</span></td>
       <td>Array of <a href="#identifier">Identifier</a></td>
-      <td>1..*</td>
       <td>Unique identifiers associated with the person.</td>
     </tr>
-
     <tr>
-      <td><code>Name</code></td>
-      <td>Object</td>
-      <td>1..1</td>
+      <td><code>names</code></td>
+      <td><span class="status-red">REQUIRED</span></td>
+      <td>Array of <a href="#name">Name</a></td>
       <td>Container for name parts.</td>
     </tr>
     <tr>
-      <td>└─ <code>familyName</code></td>
-      <td>String</td>
-      <td>1..*</td>
-      <td>Surname or family name.<br>
-          <small>FHIR: <code>HumanName.family</code> | PDS: <code>FAMILY_NAME</code></small></td>
+      <td><code>dateOfBirth</code></td>
+      <td><span class="status-red">REQUIRED</span></td>
+      <td>Date</td>
+      <td>ISO8601 formatted date of birth (YYYY-MM-DD).<br></td>
     </tr>
     <tr>
-      <td>└─ <code>givenNames</code></td>
-      <td>String</td>
-      <td>1..*</td>
-      <td>First and middle names.<br>
-          <small>FHIR: <code>HumanName.given</code> | PDS: <code>GIVEN_NAME</code></small></td>
+      <td><code>dateOfBirthAccuracy</code></td>
+      <td><span class="status-red">RECOMMENDED</span></td>
+      <td>String:<a href="#vocab-date-accuracy">DateAccuracyIndicator</a></td>
+      <td>Indicates which parts of the date are known to be accurate (A), estimated (E) or unknown (U).<br></td>
     </tr>
-
     <tr>
-      <td><code>Gender</code></td>
-      <td>Code</td>
-      <td>1..1</td>
-      <td>The person’s stated gender. (Non-biological).<br>
-          See: <a href="#vocab-gender">PersonGenderCode</a></td>
+      <td><code>addresses</code></td>
+      <td><span class="status-red">Optional</span></td>
+      <td>Array of <a href="#address">Address</a></td>
+      <td>Physical location(s) where the person can be contacted.</td>
+    </tr>
+    <tr>
+      <td><code>gender</code></td>
+      <td><span class="status-red">REQUIRED</span></td>
+      <td><a href="#vocab-gender">PersonGenderCode</a></td>
+      <td>The person’s stated gender. (Non-biological).<br></td>
+    </tr>
+    <tr>
+      <td><code>sexCode</code></td>
+      <td><span class="status-red">OPTIONAL</span></td>
+      <td><a href="#vocab-sex">PersonSexCode</a></td>
+      <td>Observed phenotypic sex, where recorded.<br></td>
     </tr>
   </tbody>
 </table>
@@ -130,28 +145,168 @@ Unique identifier (IDs) definition. It aligns with FHIR Identifier and PDS UNIQU
   <thead>
     <tr>
       <th>Field</th>
+      <th>Status</th>
       <th>Type</th>
-      <th>Card.</th>
       <th>Description / Alignment</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>value</code></td>
+      <td><span class="status-red">REQUIRED</span></td>
       <td>String</td>
-      <td>1..1</td>
       <td>Unique identifiers associated with the entity.</td>
     </tr>
     <tr>
       <td><code>system</code></td>
+      <td><span class="status-red">REQUIRED</span></td>
       <td>URI</td>
-      <td>1..1</td>
       <td>System that the identifier adheres to (e.g., https://fhir.nhs.uk/Id/nhs-number).<br>
     </tr>
   </tbody>
 </table>
 
+### Name ### {#name}
+
+Container for name parts. It aligns with FHIR [HumanName](https://build.fhir.org/datatypes.html#HumanName).
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Status</th>
+      <th>Type</th>
+      <th>Description / Alignment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>familyName</code></td>
+      <td><span class="status-red">REQUIRED</span></td>
+      <td>Array of String</td>
+      <td>Surname or family name.<br></td>
+    </tr>
+    <tr>
+      <td><code>givenNames</code></td>
+      <td><span class="status-red">REQUIRED</span></td>
+      <td>Array of String</td>
+      <td>First and middle names.<br></td>
+    </tr>
+    <tr>
+      <td><code>preferredNames</code></td>
+      <td><span class="status-red">OPTIONAL</span></td>
+      <td>String</td>
+      <td>Any preferred names used by the person.<br></td>
+    </tr>
+    <tr>
+      <td><code>use</code></td>
+      <td><span class="status-red">OPTIONAL</span></td>
+      <td><a href="#vocab-name-use">NameUse</a></td>
+      <td>Any preferred names used by the person.<br></td>
+    </tr>
+  </tbody>
+</table>
+
+### Address ### {#address}
+
+An address expressed using postal conventions (as opposed to GPS or other location definition formats). It aligns with FHIR [Address](https://build.fhir.org/datatypes.html#Address).
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Status</th>
+      <th>Type</th>
+      <th>Description / Alignment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>line1</code></td>
+      <td><span class="status-red">REQUIRED</span></td>
+      <td>String</td>
+      <td>Street address, c/o.<br></td>
+    </tr>
+    <tr>
+      <td><code>line2</code></td>
+      <td><span class="status-red">OPTIONAL</span></td>
+      <td>String</td>
+      <td>Apartment, suite, unit, building, floor, etc.<br></td>
+    </tr>
+    <tr>
+      <td><code>city</code></td>
+      <td><span class="status-red">REQUIRED</span></td>
+      <td>String</td>
+      <td>City, town, or village.<br></td>
+    </tr>
+    <tr>
+      <td><code>postcode</code></td>
+      <td><span class="status-red">REQUIRED</span></td>
+      <td>String</td>
+      <td>Postcode for address.<br></td>
+    </tr>
+    <tr>
+      <td><code>UPRN</code></td>
+      <td><span class="status-red">OPTIONAL</span></td>
+      <td>Float16</td>
+      <td>Unique Property Reference Number of the address.<br></td>
+    </tr>
+    <tr>
+      <td><code>USRN</code></td>
+      <td><span class="status-red">OPTIONAL</span></td>
+      <td>Float16</td>
+      <td>Unique Street Reference Number of the address.<br></td>
+    </tr>
+  </tbody>
+</table>
+
 Vocabularies {#vocabularies}
+============================
+
+## Name Use ## {#vocab-name-use}
+
+Corresponds to FHIR [Name Use](https://build.fhir.org/valueset-name-use.html) and indicates the intended purpose of this name. It allows applications to select the appropriate name for a specific context from a set of names. Names can be assumed to be current unless explicitly marked as temporary or old.
+
+<dl class="definition-list" id="NameUse">
+<dt><dfn>usual</dfn></dt>
+  <dd>Known as/conventional/the one you normally use.</dd>
+
+  <dt><dfn>official</dfn></dt>
+  <dd>The formal name as registered in an official (government) registry, but which name might not be commonly used. May be called "legal name".</dd>
+
+  <dt><dfn>temp</dfn></dt>
+  <dd>A temporary name. Name.period can provide more detailed information. This may also be used for temporary names assigned at birth or in emergency situations.</dd>
+
+  <dt><dfn>nickname</dfn></dt>
+  <dd>A name that is used to address the person in an informal manner, but is not part of their formal or usual name.</dd>
+
+  <dt><dfn>anonymous</dfn></dt>
+  <dd>Anonymous assigned name, alias, or pseudonym (used to protect a person's identity for privacy reasons).</dd>
+
+  <dt><dfn>old</dfn></dt>
+  <dd>This name is no longer in use (or was never correct, but retained for records).</dd>
+
+  <dt><dfn>maiden</dfn></dt>
+  <dd>A name used prior to changing name because of marriage. This name use is for use by applications that collect and store names that were used prior to a marriage. Marriage naming customs vary greatly around the world, and are constantly changing. This term is not gender specific. The use of this term does not imply any particular history for a person's name.</dd>
+</dl>
+
+##  Date Accuracy Indicator ## {#vocab-date-accuracy}
+
+Corresponds to FHIR [Date Accuracy Indicator](https://fhir.ee/ig/ee-base/ballot-2023-may/CodeSystem-ee-date-accuracy-indicator.html). A three-character code (DDMMYYYY → DMY order) indicating the accuracy of each date component:
+
+- A – Accurate
+- E – Estimated
+- U – Unknown
+
+Positions:
+- 1st character → Day
+- 2nd character → Month
+- 3rd character → Year
+
+Example:
+- AAA – Fully accurate date
+- UUE – Day and month unknown, year estimated
+- UAA – Day unknown, month and year accurate
 
 ## Person Gender Code ## {#vocab-gender}
 
@@ -177,6 +332,36 @@ The person’s stated gender. This information does not pertain to biological se
   </dd>
 
   <dt><dfn code-for="PersonGenderCode">X</dfn></dt>
+  <dd>
+    <p><strong>Display:</strong> Not Known</p>
+    <p>Not recorded or information is unavailable.</p>
+  </dd>
+</dl>
+
+## Person Sex Code ## {#vocab-sex}
+
+Observed phenotypic sex. It aligns with PDS [PERSON PHENOTYPIC SEX](https://archive.datadictionary.nhs.uk/DD%20Release%20July%202024/data_elements/person_phenotypic_sex.html) definitions.
+
+<dl class="definition-list" id="PersonSexCode">
+  <dt><dfn code-for="PersonSexCode">1</dfn></dt>
+  <dd>
+    <p><strong>Display:</strong> Male</p>
+    <p>The person identifies as male.</p>
+  </dd>
+
+  <dt><dfn code-for="PersonSexCode">2</dfn></dt>
+  <dd>
+    <p><strong>Display:</strong> Female</p>
+    <p>The person identifies as female.</p>
+  </dd>
+
+  <dt><dfn code-for="PersonSexCode">9</dfn></dt>
+  <dd>
+    <p><strong>Display:</strong> Indeterminate</p>
+    <p>Unable to be classified as either male or female.</p>
+  </dd>
+
+  <dt><dfn code-for="PersonSexCode">X</dfn></dt>
   <dd>
     <p><strong>Display:</strong> Not Known</p>
     <p>Not recorded or information is unavailable.</p>
