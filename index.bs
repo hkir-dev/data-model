@@ -287,7 +287,7 @@ References to other people related to a person.
   </thead>
   <tbody>
     <tr>
-      <td><code>perssonId</code></td>
+      <td><code>personId</code></td>
       <td><span class="status-red">REQUIRED</span></td>
       <td><a href="#identifier">Identifier</a></td>
       <td>A reference to another Person identifier.<br></td>
@@ -308,7 +308,7 @@ References to other people related to a person.
       <td><code>risk</code></td>
       <td><span class="status-red">OPTIONAL</span></td>
       <td>Array of String: <a href="#vocab-risk-code">RiskCode</a></td>
-      <td>Postcode for address.<br></td>
+      <td>Code for the risk level of the relationship.<br></td>
     </tr>
   </tbody>
 </table>
@@ -328,7 +328,7 @@ References to professionals related to a person.
   </thead>
   <tbody>
     <tr>
-      <td><code>perssonId</code></td>
+      <td><code>personId</code></td>
       <td><span class="status-red">REQUIRED</span></td>
       <td><a href="#identifier">Identifier</a></td>
       <td>A reference to Professional identifier.<br></td>
@@ -349,7 +349,7 @@ References to professionals related to a person.
       <td><code>risk</code></td>
       <td><span class="status-red">OPTIONAL</span></td>
       <td>Array of String: <a href="#vocab-risk-code">RiskCode</a></td>
-      <td>Postcode for address.<br></td>
+      <td>Code for the risk level of the relationship.<br></td>
     </tr>
   </tbody>
 </table>
