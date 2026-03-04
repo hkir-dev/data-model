@@ -294,7 +294,7 @@ References to other people related to a person.
     </tr>
     <tr>
       <td><code>type</code></td>
-      <td><span class="status-red">Required</span></td>
+      <td><span class="status-red">REQUIRED</span></td>
       <td>Array of String: <a href="#vocab-person-rel-code">PersonRelationshipCode</a></td>
       <td>Code for the kind of the relationship.<br></td>
     </tr>
@@ -335,7 +335,7 @@ References to professionals related to a person.
     </tr>
     <tr>
       <td><code>type</code></td>
-      <td><span class="status-red">Required</span></td>
+      <td><span class="status-red">REQUIRED</span></td>
       <td>Array of String: <a href="#vocab-professional-rel-code">ProfessionalRelationshipCode</a></td>
       <td>Code for the kind of the relationship.<br></td>
     </tr>
