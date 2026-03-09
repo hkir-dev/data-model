@@ -81,278 +81,49 @@ The Person entity defines the standardized structure for representing individual
 
 This entity is designed to support interoperability across children’s and adult social care systems, enabling consistent identification and linkage of records. Its primary purpose is to facilitate the implementation of “Single View” systems, thereby improving multi-agency information sharing and coordination.
 
-<table class="data">
-  <thead>
-    <tr>
-      <th>Field</th>
-      <th>Status</th>
-      <th>Type</th>
-      <th>Description / Alignment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>identifiers</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>Array of <a href="#identifier">Identifier</a></td>
-      <td>Unique identifiers associated with the person.</td>
-    </tr>
-    <tr>
-      <td><code>names</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>Array of <a href="#name">Name</a></td>
-      <td>Container for name parts.</td>
-    </tr>
-    <tr>
-      <td><code>dateOfBirth</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>Date</td>
-      <td>ISO8601 formatted date of birth (YYYY-MM-DD).<br></td>
-    </tr>
-    <tr>
-      <td><code>dateOfBirthAccuracy</code></td>
-      <td><span class="status-red">RECOMMENDED</span></td>
-      <td>String: <a href="#vocab-date-accuracy">DateAccuracyIndicator</a></td>
-      <td>Indicates which parts of the date are known to be accurate (A), estimated (E) or unknown (U).<br></td>
-    </tr>
-    <tr>
-      <td><code>addresses</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>Array of <a href="#address">Address</a></td>
-      <td>Physical location(s) where the person can be contacted.</td>
-    </tr>
-    <tr>
-      <td><code>gender</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>String: <a href="#vocab-gender">PersonGenderCode</a></td>
-      <td>The person’s stated gender. (Non-biological).<br></td>
-    </tr>
-    <tr>
-      <td><code>sexCode</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>String: <a href="#vocab-sex">PersonSexCode</a></td>
-      <td>Observed phenotypic sex, where recorded.<br></td>
-    </tr>
-    <tr>
-      <td><code>relatedPeople</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>Array of <a href="#person-relationship">PersonRelationship</a></td>
-      <td>References to other people related to this person. <br></td>
-    </tr>
-    <tr>
-      <td><code>relatedProfessionals</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>Array of <a href="#professional-relationship">ProfessionalRelationship</a></td>
-      <td>References to professionals related to this person. <br></td>
-    </tr>
-  </tbody>
-</table>
-
+<pre class=include-raw>
+	path: entities/person.html
+</pre>
 
 ### Identifier ### {#identifier}
 
 Unique identifier (IDs) definition. It aligns with FHIR Identifier and PDS UNIQUE_REFERENCE definitions
 
-<table class="data">
-  <thead>
-    <tr>
-      <th>Field</th>
-      <th>Status</th>
-      <th>Type</th>
-      <th>Description / Alignment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>value</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>String</td>
-      <td>Unique identifiers associated with the entity.</td>
-    </tr>
-    <tr>
-      <td><code>system</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>URI</td>
-      <td>System that the identifier adheres to (e.g., https://fhir.nhs.uk/Id/nhs-number).<br>
-    </tr>
-  </tbody>
-</table>
+<pre class=include-raw>
+	path: entities/identifier.html
+</pre>
 
 ### Name ### {#name}
 
 Container for name parts. It aligns with FHIR [HumanName](https://build.fhir.org/datatypes.html#HumanName).
 
-<table class="data">
-  <thead>
-    <tr>
-      <th>Field</th>
-      <th>Status</th>
-      <th>Type</th>
-      <th>Description / Alignment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>familyName</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>Array of String</td>
-      <td>Surname or family name.<br></td>
-    </tr>
-    <tr>
-      <td><code>givenNames</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>Array of String</td>
-      <td>First and middle names.<br></td>
-    </tr>
-    <tr>
-      <td><code>preferredNames</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>String</td>
-      <td>Any preferred names used by the person.<br></td>
-    </tr>
-    <tr>
-      <td><code>use</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>String: <a href="#vocab-name-use">NameUse</a></td>
-      <td>Any preferred names used by the person.<br></td>
-    </tr>
-  </tbody>
-</table>
+<pre class=include-raw>
+	path: entities/name.html
+</pre>
 
 ### Address ### {#address}
 
 An address expressed using postal conventions (as opposed to GPS or other location definition formats). It aligns with FHIR [Address](https://build.fhir.org/datatypes.html#Address).
 
-<table class="data">
-  <thead>
-    <tr>
-      <th>Field</th>
-      <th>Status</th>
-      <th>Type</th>
-      <th>Description / Alignment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>line1</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>String</td>
-      <td>Street address, c/o.<br></td>
-    </tr>
-    <tr>
-      <td><code>line2</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>String</td>
-      <td>Apartment, suite, unit, building, floor, etc.<br></td>
-    </tr>
-    <tr>
-      <td><code>city</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>String</td>
-      <td>City, town, or village.<br></td>
-    </tr>
-    <tr>
-      <td><code>postcode</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>String</td>
-      <td>Postcode for address.<br></td>
-    </tr>
-    <tr>
-      <td><code>UPRN</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>Float16</td>
-      <td>Unique Property Reference Number of the address.<br></td>
-    </tr>
-    <tr>
-      <td><code>USRN</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>Float16</td>
-      <td>Unique Street Reference Number of the address.<br></td>
-    </tr>
-  </tbody>
-</table>
+<pre class=include-raw>
+	path: entities/address.html
+</pre>
 
 ### Person Relationship ### {#person-relationship}
 
 References to other people related to a person.
 
-<table class="data">
-  <thead>
-    <tr>
-      <th>Field</th>
-      <th>Status</th>
-      <th>Type</th>
-      <th>Description / Alignment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>personId</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td><a href="#identifier">Identifier</a></td>
-      <td>A reference to another Person identifier.<br></td>
-    </tr>
-    <tr>
-      <td><code>type</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>Array of String: <a href="#vocab-person-rel-code">PersonRelationshipCode</a></td>
-      <td>Code for the kind of the relationship.<br></td>
-    </tr>
-    <tr>
-      <td><code>status</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>String: <a href="#vocab-status-code">StatusCode</a></td>
-      <td>Code for the relationship's status.<br></td>
-    </tr>
-    <tr>
-      <td><code>risk</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>Array of String: <a href="#vocab-risk-code">RiskCode</a></td>
-      <td>Code for the risk level of the relationship.<br></td>
-    </tr>
-  </tbody>
-</table>
+<pre class=include-raw>
+	path: entities/person-relationship.html
+</pre>
 
 ### Professional Relationship ### {#professional-relationship}
 
 References to professionals related to a person.
 
-<table class="data">
-  <thead>
-    <tr>
-      <th>Field</th>
-      <th>Status</th>
-      <th>Type</th>
-      <th>Description / Alignment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>personId</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td><a href="#identifier">Identifier</a></td>
-      <td>A reference to Professional identifier.<br></td>
-    </tr>
-    <tr>
-      <td><code>type</code></td>
-      <td><span class="status-red">REQUIRED</span></td>
-      <td>Array of String: <a href="#vocab-professional-rel-code">ProfessionalRelationshipCode</a></td>
-      <td>Code for the kind of the relationship.<br></td>
-    </tr>
-    <tr>
-      <td><code>status</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>String: <a href="#vocab-status-code">StatusCode</a></td>
-      <td>Code for the relationship's status.<br></td>
-    </tr>
-    <tr>
-      <td><code>risk</code></td>
-      <td><span class="status-red">OPTIONAL</span></td>
-      <td>Array of String: <a href="#vocab-risk-code">RiskCode</a></td>
-      <td>Code for the risk level of the relationship.<br></td>
-    </tr>
-  </tbody>
-</table>
+<pre class=include-raw>
+	path: entities/professional-relationship.html
+</pre>
 
 Vocabularies {#vocabularies}
 ============================
@@ -361,44 +132,10 @@ Vocabularies {#vocabularies}
         
 Corresponds to FHIR [Name Use](https://build.fhir.org/valueset-name-use.html) and indicates the intended purpose of this name. It allows applications to select the appropriate name for a specific context from a set of names. Names can be assumed to be current unless explicitly marked as temporary or old.
         
-<table class="data" id="NameUse">
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>usual</code></td>
-      <td>Known as/conventional/the one you normally use.</td>
-    </tr>
-    <tr>
-      <td><code>official</code></td>
-      <td>The formal name as registered in an official (government) registry, but which name might not be commonly used. May be called "legal name".</td>
-    </tr>
-    <tr>
-      <td><code>temp</code></td>
-      <td>A temporary name. Name.period can provide more detailed information. This may also be used for temporary names assigned at birth or in emergency situations.</td>
-    </tr>
-    <tr>
-      <td><code>nickname</code></td>
-      <td>A name that is used to address the person in an informal manner, but is not part of their formal or usual name.</td>
-    </tr>
-    <tr>
-      <td><code>anonymous</code></td>
-      <td>Anonymous assigned name, alias, or pseudonym (used to protect a person's identity for privacy reasons).</td>
-    </tr>
-    <tr>
-      <td><code>old</code></td>
-      <td>This name is no longer in use (or was never correct, but retained for records).</td>
-    </tr>
-    <tr>
-      <td><code>maiden</code></td>
-      <td>A name used prior to changing name because of marriage. This name use is for use by applications that collect and store names that were used prior to a marriage. Marriage naming customs vary greatly around the world, and are constantly changing. This term is not gender specific. The use of this term does not imply any particular history for a person's name.</td>
-    </tr>
-  </tbody>
-</table>
+<pre class=include-raw>
+	path: vocabulary/name-use.html
+</pre>
+
 
 ##  Date Accuracy Indicator ## {#vocab-date-accuracy}
 
@@ -422,73 +159,17 @@ Example:
         
 The person’s stated gender. This information does not pertain to biological sex. It aligns with FHIR [PersonStatedGenderCode](https://simplifier.net/hl7fhircareconnectbaselineforstu3/careconnect-nhsdatadictionary-personstatedgender-1) and PDS [PERSON_STATED_GENDER_CODE](https://archive.datadictionary.nhs.uk/DD%20Release%20May%202024/data_elements/person_stated_gender_code.html) definitions.
         
-<table class="data" id="PersonGenderCode">
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Display</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>1</code></td>
-      <td>Male</td>
-      <td>The person identifies as male.</td>
-    </tr>
-    <tr>
-      <td><code>2</code></td>
-      <td>Female</td>
-      <td>The person identifies as female.</td>
-    </tr>
-    <tr>
-      <td><code>9</code></td>
-      <td>Indeterminate</td>
-      <td>Unable to be classified as either male or female.</td>
-    </tr>
-    <tr>
-      <td><code>X</code></td>
-      <td>Not Known</td>
-      <td>Not recorded or information is unavailable.</td>
-    </tr>
-  </tbody>
-</table>
+<pre class=include-raw>
+	path: vocabulary/gender.html
+</pre>
 
 ## Person Sex Code ## {#vocab-sex}
         
 Observed phenotypic sex. It aligns with PDS [PERSON PHENOTYPIC SEX](https://archive.datadictionary.nhs.uk/DD%20Release%20July%202024/data_elements/person_phenotypic_sex.html) definitions.
         
-<table class="data" id="PersonSexCode">
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Display</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>1</code></td>
-      <td>Male</td>
-      <td>The person identifies as male.</td>
-    </tr>
-    <tr>
-      <td><code>2</code></td>
-      <td>Female</td>
-      <td>The person identifies as female.</td>
-    </tr>
-    <tr>
-      <td><code>9</code></td>
-      <td>Indeterminate</td>
-      <td>Unable to be classified as either male or female.</td>
-    </tr>
-    <tr>
-      <td><code>X</code></td>
-      <td>Not Known</td>
-      <td>Not recorded or information is unavailable.</td>
-    </tr>
-  </tbody>
-</table>
+<pre class=include-raw>
+	path: vocabulary/sex.html
+</pre>
 
 ## Person Relationship Code ## {#vocab-person-rel-code}
 

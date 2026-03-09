@@ -15,6 +15,8 @@ on:
     paths:
       - 'index.bs'
       - '.github/workflows/deploy-bikeshed.yml'
+      - 'entities/*.html'
+      - 'vocabulary/*.html'
 
 # Sets permissions for GitHub Pages deployment
 permissions:
