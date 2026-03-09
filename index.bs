@@ -53,17 +53,6 @@ The data model is built on the following core principles:
 * **Interoperability**: Data can be exchanged between different systems
 * **Validation**: Data structures include validation rules to ensure data quality
 
-## Terminology ## {#terminology}
-
-<dfn export>Entity</dfn>
-: A discrete unit of data with defined attributes and relationships
-
-<dfn export>Attribute</dfn>
-: A property or characteristic of an entity
-
-<dfn export>Relationship</dfn>
-: A connection or association between two or more entities
-
 Data Model {#data-model}
 =========================
 
@@ -117,12 +106,46 @@ References to other people related to a person.
 	path: entities/person-relationship.html
 </pre>
 
-### Professional Relationship ### {#professional-relationship}
+### Professional ### {#professional}
 
-References to professionals related to a person.
+A professional is an individual acting in a formal role within an organisation who has responsibilities relating to an individual's safety, wellbeing, care or support. Professionals will work with individuals in a range of ways, which can include undertaking assessments, creating and monitoring plans or sharing information within a multiagency context.
+
+A professional's involvement can be ongoing or relate to a specific service episode, and multiple professionals can work with an individual at any one time from a range of agencies.
 
 <pre class=include-raw>
-	path: entities/professional-relationship.html
+	path: entities/professional.html
+</pre>
+
+### Contact ### {#contact}
+
+Container for contact information.
+
+<pre class=include-raw>
+	path: entities/contact.html
+</pre>
+
+### Service ### {#service}
+
+TODO add description
+
+<pre class=include-raw>
+	path: entities/service.html
+</pre>
+
+### Organisation ### {#organisation}
+
+TODO add description
+
+<pre class=include-raw>
+	path: entities/organisation.html
+</pre>
+
+### Status ### {#status}
+
+A Status to describe the type of status (eg. disability, free schoo meals).
+
+<pre class=include-raw>
+	path: entities/status.html
 </pre>
 
 Vocabularies {#vocabularies}
@@ -179,15 +202,22 @@ Types of personal relationships between two living subjects (ex. parent, sibling
 	path: vocabulary/person-relationship-code.html
 </pre>
 
-## Professional Relationship Code ## {#vocab-professional-rel-code}
-
-TODO find the source vocabulary
-
 ## Relationship Status Code ## {#vocab-status-code}
 
 TODO find the source vocabulary
+TODO also mentioned in Profesional. Are these the same vocabulary?
+TODO also mentioned in Service. Are these the same vocabulary?
+TODO also mentioned in Organisation. Are these the same vocabulary?
 
 ## Relationship Risk Code ## {#vocab-risk-code}
+
+TODO find the source vocabulary
+
+## Service Code ## {#vocab-service-code}
+
+TODO find the source vocabulary
+
+## Organisation Code ## {#vocab-organisation-code}
 
 TODO find the source vocabulary
 

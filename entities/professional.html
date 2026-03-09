@@ -1,0 +1,54 @@
+<table class="data">
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Status</th>
+        <th>Type</th>
+        <th>Description / Alignment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>identifiers</code></td>
+        <td><span class="status-red">REQUIRED</span></td>
+        <td>Array of <a href="#identifier">Identifier</a></td>
+        <td>Unique identifiers (IDs) associated with the professional.</td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td><span class="status-red">REQUIRED</span></td>
+        <td><a href="#name">Name</a></td>
+        <td>Container for the professional's name parts.</td>
+      </tr>
+      <tr>
+        <td><code>role</code></td>
+        <td><span class="status-red">REQUIRED</span></td>
+        <td>Array of String</td>
+        <td>Text to describe professional's occupational role, eg. their position in an organogram.<br></td>
+      </tr>
+      <tr>
+        <td><code>status</code></td>
+        <td><span class="status-red">OPTIONAL</span></td>
+        <td>Array of String: <a href="#vocab-status-code">StatusCode</a></td>
+        <td>Code for the professional's current working status<br></td>
+      </tr>
+      <tr>
+        <td><code>personalContact</code></td>
+        <td><span class="status-red">OPTIONAL</span></td>
+        <td><a href="#contact">Contact</a></td>
+        <td>Professional's preferred contact details.</td>
+      </tr>
+      <tr>
+        <td><code>services</code></td>
+        <td><span class="status-red">OPTIONAL</span></td>
+        <td>Array of <a href="#service">Service</a></td>
+        <td>References to Service(s) the professional is related to.<br></td>
+      </tr>
+      <tr>
+        <td><code>organisations</code></td>
+        <td><span class="status-red">OPTIONAL</span></td>
+        <td>Array of <a href="#organisation">Organisation</a></td>
+        <td>References to Organisation(s) the professional is related to.<br></td>
+      </tr>
+    </tbody>
+  </table>
