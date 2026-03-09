@@ -62,7 +62,7 @@ This section defines the core data structures and their relationships for social
 
 This diagram illustrates the resources and relationships that are introduced in the following sections.
 
-<img alt="Social Care CMS data model diagram" src="images/SC_data_model.drawio.png" width="717" height="845">
+<img alt="Social Care CMS data model diagram" src="images/SC_data_model.drawio.png" style="width:75%; height:75%;">
 
 ### Person ### {#person}
 
