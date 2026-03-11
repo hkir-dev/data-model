@@ -58,18 +58,20 @@ Data Model {#data-model}
 
 This section defines the core data structures and their relationships for social care case management systems. The data model described in the following sections reuses existing standards and vocabularies which have then been extended to cover the additional requirements needs to support the publication of consumption of Social Care data.
 
-## Namespaces ##
+## Namespaces
 
 The rest of this specification makes use of the following namespaces:
 
-dc:
-http://purl.org/dc/terms/
-schema:
-https://schema.org/
-skos:
-http://www.w3.org/2004/02/skos/core#
-sc:
-https://socialcare.io/
+<dl>
+<dt>`dc:`</dt>
+<dd>`http://purl.org/dc/terms/`</dd>
+<dt>`schema:`</dt>
+<dd>`https://schema.org/`</dd>
+<dt>`skos:`</dt>
+<dd>`http://www.w3.org/2004/02/skos/core#`</dd>
+<dt>`sc:`</dt>
+<dd>`https://socialcare.io/`</dd>
+</dl>
 
 ## Data Model Diagram ## {#data-model-diagram}
 
@@ -132,7 +134,7 @@ Describing a service episode requires describing a service -- an organisation th
 	path: entities/service-episode.html
 </pre>
 
-### Organisation ### {#organisation}
+### Desribing Organisation (`sc:Organisation`) ### {#organisation}
 
 TODO add description
 
@@ -140,7 +142,7 @@ TODO add description
 	path: entities/organisation.html
 </pre>
 
-### Describing  Life Event (`sc:LifeEvent`) ### {#life-event}
+### Describing Life Event (`sc:LifeEvent`) ### {#life-event}
 
 A life event is a significant, time-bound occurence in an individual's life that may have implications for their safety, wellbeing or development. They are not inherently positive or negative, but can indicate to safeguarding and wellbeing professionals levels of risk, vulnerability, need or changes in support requirements. Examples of life events in this space could include attendance at A+E, a child being reported as missing or an exclusion from school.
 
@@ -190,7 +192,7 @@ Container for contact information.
 	path: entities/contact.html
 </pre>
 
-### Describing Person Relationship (`sc:PerssonRelationship`) ### {#person-relationship}
+### Describing Person Relationship (`sc:PersonRelationship`) ### {#person-relationship}
 
 References to other people related to a person.
 
