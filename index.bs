@@ -56,7 +56,20 @@ The data model is built on the following core principles:
 Data Model {#data-model}
 =========================
 
-This section defines the core data structures and their relationships for social care case management systems.
+This section defines the core data structures and their relationships for social care case management systems. The data model described in the following sections reuses existing standards and vocabularies which have then been extended to cover the additional requirements needs to support the publication of consumption of Social Care data.
+
+## Namespaces ##
+
+The rest of this specification makes use of the following namespaces:
+
+dc:
+http://purl.org/dc/terms/
+schema:
+https://schema.org/
+skos:
+http://www.w3.org/2004/02/skos/core#
+sc:
+https://socialcare.io/
 
 ## Data Model Diagram ## {#data-model-diagram}
 
@@ -65,7 +78,7 @@ This diagram illustrates the resources and relationships that are introduced in 
 <!-- <img alt="Social Care CMS data model diagram" src="images/SC_data_model.drawio.png"> -->
 <img alt="Social Care CMS data model diagram" src="images/SC_data_model.drawio.png" style="width:95%; height:95%;">
 
-### Person ### {#person}
+### Describing Person (`sc:Person`) ### {#person}
 
 The Person entity defines the standardized structure for representing individuals within the unified data model. It consolidates core identity attributes required to uniquely distinguish one person from another and to establish relationships between individuals.
 
@@ -81,7 +94,7 @@ The following example shows a simple person description:
 	path: examples/person.html
 </pre>
 
-### Professional ### {#professional}
+### Describing Professional (`sc:Professional`) ### {#professional}
 
 A professional is an individual acting in a formal role within an organisation who has responsibilities relating to an individual's safety, wellbeing, care or support. Professionals will work with individuals in a range of ways, which can include undertaking assessments, creating and monitoring plans or sharing information within a multiagency context.
 
@@ -97,7 +110,7 @@ The following example shows a simple professional description:
 	path: examples/professional.html
 </pre>
 
-### Service ### {#service}
+### Describing Service (`sc:Service`) ### {#service}
 
 TODO add description
 
@@ -105,7 +118,7 @@ TODO add description
 	path: entities/service.html
 </pre>
 
-### Service Episode ### {#service-episode}
+### Describing Service Episode (`sc:ServiceEpisode`) ### {#service-episode}
 
 A service episode is a bounded period during which an individual receives a defined service, intervention, or package of support from a service or professional. It has a recognisable start and end point, though duration may vary from a single contact to sustained involvement over time.
 
@@ -127,7 +140,7 @@ TODO add description
 	path: entities/organisation.html
 </pre>
 
-### Life Event ### {#life-event}
+### Describing  Life Event (`sc:LifeEvent`) ### {#life-event}
 
 A life event is a significant, time-bound occurence in an individual's life that may have implications for their safety, wellbeing or development. They are not inherently positive or negative, but can indicate to safeguarding and wellbeing professionals levels of risk, vulnerability, need or changes in support requirements. Examples of life events in this space could include attendance at A+E, a child being reported as missing or an exclusion from school.
 
@@ -137,7 +150,7 @@ Safeguarding professionals will be interested in the recency of events (when the
 	path: entities/life-event.html
 </pre>
 
-### Identifier ### {#identifier}
+### Describing Identifier (`sc:Identifier`) ### {#identifier}
 
 Unique identifier (IDs) definition. It aligns with FHIR Identifier and PDS UNIQUE_REFERENCE definitions
 
@@ -145,7 +158,7 @@ Unique identifier (IDs) definition. It aligns with FHIR Identifier and PDS UNIQU
 	path: entities/identifier.html
 </pre>
 
-### Name ### {#name}
+### Describing Name (`sc:Name`) ### {#name}
 
 Container for name parts. It aligns with FHIR [HumanName](https://build.fhir.org/datatypes.html#HumanName).
 
@@ -153,7 +166,7 @@ Container for name parts. It aligns with FHIR [HumanName](https://build.fhir.org
 	path: entities/name.html
 </pre>
 
-### Date of Birth ### {#date-of-birth}
+### Describing Date of Birth (`sc:DateOfBirth`) ### {#date-of-birth}
 
 Container for the person's date of birth. It aligns with FHIR [Patient.birthDate](https://build.fhir.org/patient-definitions.html#Patient.birthDate).
 
@@ -161,7 +174,7 @@ Container for the person's date of birth. It aligns with FHIR [Patient.birthDate
 	path: entities/date-of-birth.html
 </pre>
 
-### Address ### {#address}
+### Describing Address (`sc:Address`) ### {#address}
 
 An address expressed using postal conventions (as opposed to GPS or other location definition formats). It aligns with FHIR [Address](https://build.fhir.org/datatypes.html#Address).
 
@@ -169,7 +182,7 @@ An address expressed using postal conventions (as opposed to GPS or other locati
 	path: entities/address.html
 </pre>
 
-### Contact ### {#contact}
+### Describing Contact (`sc:Contact`) ### {#contact}
 
 Container for contact information.
 
@@ -177,7 +190,7 @@ Container for contact information.
 	path: entities/contact.html
 </pre>
 
-### Person Relationship ### {#person-relationship}
+### Describing Person Relationship (`sc:PerssonRelationship`) ### {#person-relationship}
 
 References to other people related to a person.
 
@@ -185,7 +198,13 @@ References to other people related to a person.
 	path: entities/person-relationship.html
 </pre>
 
-### Status ### {#status}
+The following example demonstrates a simple family membership relationship between two people:
+
+<pre class=include-raw>
+	path: examples/person-relationship.html
+</pre>
+
+### Desribing Status (`sc:Status`) ### {#status}
 
 A Status to describe the type of status (eg. disability, free schoo meals).
 
@@ -193,7 +212,7 @@ A Status to describe the type of status (eg. disability, free schoo meals).
 	path: entities/status.html
 </pre>
 
-### Subject Person ### {#subject-person}
+### Describing Subject Person (`sc:SubjectPerson`) ### {#subject-person}
 
 Person(s) involved in the episode.
 
@@ -201,7 +220,7 @@ Person(s) involved in the episode.
 	path: entities/subject-person.html
 </pre>
 
-### Related Professional ### {#related-professional}
+### Describing Related Professional (`sc:RelatedProfessional`) ### {#related-professional}
 
 Professional(s) involved in the episode.
 
@@ -209,7 +228,7 @@ Professional(s) involved in the episode.
 	path: entities/related-professional.html
 </pre>
 
-### Time Information ### {#time-information}
+### Describing Time Information (`sc:TimeInformation`) ### {#time-information}
 
 Timing of the episode.
 
