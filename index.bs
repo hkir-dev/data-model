@@ -80,7 +80,7 @@ This diagram illustrates the resources and relationships that are introduced in 
 <!-- <img alt="Social Care CMS data model diagram" src="images/SC_data_model.drawio.png"> -->
 <img alt="Social Care CMS data model diagram" src="images/SC_data_model.drawio.png" style="width:95%; height:95%;">
 
-### Describing Person (`sc:Person`) ### {#person}
+### Describing Person (<code>sc:Person</code>) ### {#person}
 
 The Person entity defines the standardized structure for representing individuals within the unified data model. It consolidates core identity attributes required to uniquely distinguish one person from another and to establish relationships between individuals.
 
