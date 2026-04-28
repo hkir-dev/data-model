@@ -1,0 +1,438 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix pl:    <https://socialcaredata.github.io/ontology/placements#> .
+@prefix cln:   <https://socialcaredata.github.io/ontology/placements/vocab/cultural-need#> .
+@prefix cn:    <https://socialcaredata.github.io/ontology/placements/vocab/communication-need#> .
+@prefix la:    <https://socialcaredata.github.io/ontology/placements/vocab/living-arrangement#> .
+@prefix pa:    <https://socialcaredata.github.io/ontology/placements/vocab/pets-allowance#> .
+@prefix pt:    <https://socialcaredata.github.io/ontology/placements/vocab/placement-type#> .
+@prefix pu:    <https://socialcaredata.github.io/ontology/placements/vocab/placement-urgency#> .
+@prefix rl:    <https://socialcaredata.github.io/ontology/placements/vocab/risk-level#> .
+@prefix sl:    <https://socialcaredata.github.io/ontology/placements/vocab/suitability-level#> .
+@prefix st:    <https://socialcaredata.github.io/ontology/placements/vocab/support-type#> .
+@prefix yns:   <https://socialcaredata.github.io/ontology/placements/vocab/presence-status#> .
+@prefix :      <https://socialcaredata.github.io/ontology/placements/shape#> .
+
+#
+# SHACL shapes for the Children's Social Care Placements ontology.
+#
+# Mirrors the OWL cardinality and skos:inScheme restrictions in
+# placements.ttl, plus the data-completeness rules from the
+# "Checklist and QA" sheet of the National Placement Standard
+# spreadsheet.
+#
+# Out of scope for SHACL (operational checks, not data-shape):
+#   - whole-quarter coverage of placements
+#   - spreadsheet template column order / extra columns
+#   - "preferred placement reflects child's actual preference" (semantic)
+#   - duplicate childId / placementId across records (cross-record;
+#     handled in validate.js as a pre-pass since SHACL Core can't
+#     express it without sh:sparql)
+#
+
+<https://socialcaredata.github.io/ontology/placements/shape> a owl:Ontology ;
+    dct:title "Placement Spec SHACL Shapes" ;
+    rdfs:label "Placement Spec Shapes" ;
+    dct:description "SHACL shapes validating the structure and controlled-vocabulary use of pl:Placement records." ;
+    owl:versionInfo "1.0.0" .
+
+
+#################################################################
+#    Placement (top-level / spec)
+#################################################################
+
+:PlacementShape a sh:NodeShape ;
+    sh:targetClass pl:Placement ;
+    rdfs:label "Placement shape" ;
+    sh:property [
+        sh:path pl:childId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "childId is required (exactly one value)."
+    ] ;
+    sh:property [
+        sh:path pl:hasPlacementAvailability ;
+        sh:class pl:PlacementAvailability ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Placement must have exactly one PlacementAvailability."
+    ] ;
+    sh:property [
+        sh:path pl:hasPlacementRequirements ;
+        sh:class pl:PlacementRequirements ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Placement must have exactly one PlacementRequirements."
+    ] ;
+    sh:property [
+        sh:path pl:hasPlacementRecommendation ;
+        sh:class pl:PlacementRecommendation ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Placement must have exactly one PlacementRecommendation."
+    ] ;
+    sh:property [
+        sh:path pl:hasRiskAssessment ;
+        sh:class pl:RiskAssessment ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Placement must have exactly one RiskAssessment (QA: all risk fields populated)."
+    ] ;
+    sh:property [
+        sh:path pl:hasQualityAssurance ;
+        sh:class pl:QualityAssurance ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Placement must have exactly one QualityAssurance (referralDate, placementDate, costDate)."
+    ] ;
+    sh:property [
+        sh:path pl:hasActualPlacement ;
+        sh:class pl:ActualPlacement ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:maxCount 1 ;
+        sh:message "Placement may have at most one ActualPlacement."
+    ] .
+
+
+#################################################################
+#    PlacementAvailability (referral details)
+#################################################################
+
+:PlacementAvailabilityShape a sh:NodeShape ;
+    sh:targetClass pl:PlacementAvailability ;
+    rdfs:label "PlacementAvailability shape" ;
+    sh:property [
+        sh:path pl:placementId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "placementId is required (exactly one value)."
+    ] ;
+    sh:property [
+        sh:path pl:neededBy ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( pu:Today pu:WithinFiveDays pu:MoreThanFiveDays ) ;
+        sh:maxCount 1 ;
+        sh:message "neededBy must be a placement-urgency concept (Today, <5 days, >5 days)."
+    ] ;
+    sh:property [
+        sh:path pl:siblingCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path pl:preferredLocation ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1
+    ] .
+
+
+#################################################################
+#    PlacementRequirements (child needs)
+#################################################################
+
+:PlacementRequirementsShape a sh:NodeShape ;
+    sh:targetClass pl:PlacementRequirements ;
+    rdfs:label "PlacementRequirements shape" ;
+    sh:property [
+        sh:path pl:communicationNeeds ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( yns:Yes yns:No yns:NotSpecified ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "communicationNeeds must be Yes / No / Not specified."
+    ] ;
+    sh:property [
+        sh:path pl:specificCommunicationRequirement ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( cn:ESOL cn:BSL cn:Makaton cn:Other cn:None ) ;
+        sh:minCount 1 ;
+        sh:message "At least one specificCommunicationRequirement is required (use cn:None if not applicable)."
+    ] ;
+    sh:property [
+        sh:path pl:culturalNeeds ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( cln:Required cln:NotRequired cln:NotKnown cln:Other ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "culturalNeeds must be Required / Not required / Not known / Other."
+    ] ;
+    sh:property [
+        sh:path pl:livingCompanions ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( la:SoloPlacement la:WithOtherChildren la:OnlyWithOlderChildren la:OnlyWithYoungerChildren la:NoPreference ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "livingCompanions must be one of the living-arrangement concepts."
+    ] ;
+    sh:property [
+        sh:path pl:pets ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( pa:YesMust pa:YesCan pa:No pa:NotKnown ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "pets must be Yes-must / Yes-can / No / Not known."
+    ] ;
+    sh:property [
+        sh:path pl:additionalSupport ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( st:AdditionalSupervision st:TherapeuticSupport st:WorkerForRespite st:TaxisToSchool st:NotApplicable st:Other ) ;
+        sh:maxCount 1 ;
+        sh:message "additionalSupport must be a support-type concept."
+    ] ;
+    sh:property [
+        sh:path pl:additionalSupportOther ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path pl:homeAdaptationRequired ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "homeAdaptationRequired is required."
+    ] ;
+    sh:property [
+        sh:path pl:deprivationOfLiberty ;
+        sh:datatype xsd:boolean ;
+        sh:maxCount 1
+    ] .
+
+
+#################################################################
+#    PlacementRecommendation (social-worker suitability)
+#################################################################
+
+:PlacementRecommendationShape a sh:NodeShape ;
+    sh:targetClass pl:PlacementRecommendation ;
+    rdfs:label "PlacementRecommendation shape" ;
+    sh:property [
+        sh:path pl:fosterCareSuitability ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( sl:Preferred sl:SuitableButNotPreferred sl:Unsuitable sl:NotSpecified ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "fosterCareSuitability must be a suitability-level concept."
+    ] ;
+    sh:property [
+        sh:path pl:residentialCareSuitability ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( sl:Preferred sl:SuitableButNotPreferred sl:Unsuitable sl:NotSpecified ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "residentialCareSuitability must be a suitability-level concept."
+    ] ;
+    sh:property [
+        sh:path pl:supportedAccommodationSuitability ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( sl:Preferred sl:SuitableButNotPreferred sl:Unsuitable sl:NotSpecified ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "supportedAccommodationSuitability must be a suitability-level concept."
+    ] .
+
+
+#################################################################
+#    RiskAssessment - every risk field required (QA: "all risk
+#    categories populated, even if 'No known risk'").
+#################################################################
+
+:RiskAssessmentShape a sh:NodeShape ;
+    sh:targetClass pl:RiskAssessment ;
+    rdfs:label "RiskAssessment shape" ;
+
+    # Risks to child
+    sh:property [
+        sh:path pl:riskSelfHarm ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( rl:NoKnownRisk rl:RiskPresent ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "riskSelfHarm is required (No known risk / Risk present)."
+    ] ;
+    sh:property [
+        sh:path pl:riskCriminalExploitation ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( rl:NoKnownRisk rl:RiskPresent ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "riskCriminalExploitation is required."
+    ] ;
+    sh:property [
+        sh:path pl:riskDrugAlcohol ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( rl:NoKnownRisk rl:RiskPresent ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "riskDrugAlcohol is required."
+    ] ;
+    sh:property [
+        sh:path pl:riskEatingDisorder ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( rl:NoKnownRisk rl:RiskPresent ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "riskEatingDisorder is required."
+    ] ;
+    sh:property [
+        sh:path pl:riskMissing ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( rl:NoKnownRisk rl:RiskPresent ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "riskMissing is required."
+    ] ;
+    sh:property [
+        sh:path pl:riskSexualExploitation ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( rl:NoKnownRisk rl:RiskPresent ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "riskSexualExploitation is required."
+    ] ;
+
+    # Risks to others / property
+    sh:property [
+        sh:path pl:riskToOthersPhysical ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( rl:NoKnownRisk rl:RiskPresent ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "riskToOthersPhysical is required."
+    ] ;
+    sh:property [
+        sh:path pl:riskToOthersSexual ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( rl:NoKnownRisk rl:RiskPresent ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "riskToOthersSexual is required."
+    ] ;
+    sh:property [
+        sh:path pl:riskToOthersFire ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( rl:NoKnownRisk rl:RiskPresent ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "riskToOthersFire is required."
+    ] ;
+    sh:property [
+        sh:path pl:riskToOthersAnimals ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( rl:NoKnownRisk rl:RiskPresent ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "riskToOthersAnimals is required."
+    ] ;
+    sh:property [
+        sh:path pl:riskToOthersCriminal ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( rl:NoKnownRisk rl:RiskPresent ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "riskToOthersCriminal is required."
+    ] ;
+
+    # Free text for "other" categories
+    sh:property [
+        sh:path pl:riskOther ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path pl:riskToOthersOther ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1
+    ] .
+
+
+#################################################################
+#    ActualPlacement (matched placement outcome)
+#
+#    Every property here is required, mirroring the OWL
+#    cardinality 1 restrictions in placements.ttl. The presence
+#    of ActualPlacement implies the QualityAssurance fields it
+#    cross-references (placementDate, costDate) must also be set,
+#    which the QualityAssurance shape enforces unconditionally -
+#    so the QA-sheet rule "if Placement Type is set then Referral
+#    Date and Placement Needed by must be set" is structurally
+#    enforced via the parent Placement requiring both
+#    PlacementAvailability and QualityAssurance.
+#################################################################
+
+:ActualPlacementShape a sh:NodeShape ;
+    sh:targetClass pl:ActualPlacement ;
+    rdfs:label "ActualPlacement shape" ;
+    sh:property [
+        sh:path pl:placementType ;
+        sh:nodeKind sh:IRI ;
+        sh:in ( pt:Foster pt:Residential pt:SupportedAccommodation ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "placementType is required (Foster / Residential / Supported Accommodation)."
+    ] ;
+    sh:property [
+        sh:path pl:providerURN ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ; sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path pl:placementLocation ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:maxLength 4 ;
+        sh:pattern "^[A-Z]{1,2}[0-9][0-9A-Z]?$" ;
+        sh:message "placementLocation must be a UK outward postcode prefix (3-4 chars, e.g. TA3 or BS10)."
+    ] ;
+    sh:property [
+        sh:path pl:isLocationPreferred ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ; sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path pl:isEducationContinuous ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ; sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path pl:siblingsPlacedTogether ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ; sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path pl:totalWeeklyCost ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ; sh:maxCount 1
+    ] ;
+    # Cost sense-check (warning only, per QA sheet "<£100 or >£100,000 likely incorrect")
+    sh:property [
+        sh:path pl:totalWeeklyCost ;
+        sh:minInclusive 100 ;
+        sh:maxInclusive 100000 ;
+        sh:severity sh:Warning ;
+        sh:message "totalWeeklyCost outside the expected £100 - £100,000 range; please sense-check."
+    ] .
+
+
+#################################################################
+#    QualityAssurance (recording metadata)
+#################################################################
+
+:QualityAssuranceShape a sh:NodeShape ;
+    sh:targetClass pl:QualityAssurance ;
+    rdfs:label "QualityAssurance shape" ;
+    sh:property [
+        sh:path pl:referralDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "referralDate is required (xsd:date)."
+    ] ;
+    sh:property [
+        sh:path pl:placementDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ; sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path pl:placementOfficerName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ; sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path pl:costDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ; sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path pl:referralOfficerName ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path pl:costOfficerName ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1
+    ] .

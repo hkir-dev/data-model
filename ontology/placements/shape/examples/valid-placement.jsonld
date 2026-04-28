@@ -1,0 +1,76 @@
+{
+  "@context": "./context.jsonld",
+  "@id": "ex:ABCD2012-001",
+  "@type": "Placement",
+
+  "childId": "ABCD2012",
+
+  "hasPlacementAvailability": {
+    "@id": "ex:ABCD2012-001/availability",
+    "@type": "PlacementAvailability",
+    "placementId": "PLC-ABCD2012-001",
+    "neededBy": "pu:WithinFiveDays",
+    "siblingCount": 2,
+    "preferredLocation": "outside-placing-LA"
+  },
+
+  "hasPlacementRequirements": {
+    "@id": "ex:ABCD2012-001/requirements",
+    "@type": "PlacementRequirements",
+    "communicationNeeds": "yns:NotSpecified",
+    "specificCommunicationRequirement": ["cn:ESOL"],
+    "culturalNeeds": "cln:Required",
+    "livingCompanions": "la:OnlyWithYoungerChildren",
+    "pets": "pa:No",
+    "additionalSupport": "st:TaxisToSchool",
+    "homeAdaptationRequired": true,
+    "deprivationOfLiberty": true
+  },
+
+  "hasPlacementRecommendation": {
+    "@id": "ex:ABCD2012-001/recommendation",
+    "@type": "PlacementRecommendation",
+    "fosterCareSuitability": "sl:Preferred",
+    "residentialCareSuitability": "sl:SuitableButNotPreferred",
+    "supportedAccommodationSuitability": "sl:Unsuitable"
+  },
+
+  "hasRiskAssessment": {
+    "@id": "ex:ABCD2012-001/risk",
+    "@type": "RiskAssessment",
+    "riskSelfHarm":             "rl:RiskPresent",
+    "riskCriminalExploitation": "rl:NoKnownRisk",
+    "riskDrugAlcohol":          "rl:NoKnownRisk",
+    "riskEatingDisorder":       "rl:NoKnownRisk",
+    "riskMissing":              "rl:RiskPresent",
+    "riskSexualExploitation":   "rl:NoKnownRisk",
+    "riskToOthersPhysical":     "rl:NoKnownRisk",
+    "riskToOthersSexual":       "rl:NoKnownRisk",
+    "riskToOthersFire":         "rl:NoKnownRisk",
+    "riskToOthersAnimals":      "rl:NoKnownRisk",
+    "riskToOthersCriminal":     "rl:NoKnownRisk"
+  },
+
+  "hasActualPlacement": {
+    "@id": "ex:ABCD2012-001/actual",
+    "@type": "ActualPlacement",
+    "placementType": "pt:Residential",
+    "providerURN": "ABCD10293002",
+    "placementLocation": "N18",
+    "isLocationPreferred": true,
+    "isEducationContinuous": false,
+    "siblingsPlacedTogether": 1,
+    "totalWeeklyCost": 4500.00
+  },
+
+  "hasQualityAssurance": {
+    "@id": "ex:ABCD2012-001/qa",
+    "@type": "QualityAssurance",
+    "referralOfficerName": "Alex Brown",
+    "referralDate":  "2024-02-12",
+    "placementOfficerName": "Beth Green",
+    "placementDate": "2024-03-21",
+    "costOfficerName": "Casey White",
+    "costDate":      "2024-03-25"
+  }
+}

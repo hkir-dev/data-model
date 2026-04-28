@@ -1,0 +1,70 @@
+{
+  "@context": "./context.jsonld",
+  "@id": "ex:INVALID-003",
+  "@type": "Placement",
+
+  "childId": "INVALID003",
+
+  "hasPlacementAvailability": {
+    "@id": "ex:INVALID-003/availability",
+    "@type": "PlacementAvailability",
+    "placementId": "PLC-INVALID-003",
+    "neededBy": "pu:MoreThanFiveDays"
+  },
+
+  "hasPlacementRequirements": {
+    "@id": "ex:INVALID-003/requirements",
+    "@type": "PlacementRequirements",
+    "communicationNeeds": "yns:No",
+    "specificCommunicationRequirement": ["cn:None"],
+    "culturalNeeds": "cln:NotRequired",
+    "livingCompanions": "la:NoPreference",
+    "pets": "pa:YesCan",
+    "homeAdaptationRequired": false
+  },
+
+  "hasPlacementRecommendation": {
+    "@id": "ex:INVALID-003/recommendation",
+    "@type": "PlacementRecommendation",
+    "fosterCareSuitability": "sl:Preferred",
+    "residentialCareSuitability": "sl:NotSpecified",
+    "supportedAccommodationSuitability": "sl:NotSpecified"
+  },
+
+  "hasRiskAssessment": {
+    "@id": "ex:INVALID-003/risk",
+    "@type": "RiskAssessment",
+    "riskSelfHarm":             "rl:NoKnownRisk",
+    "riskCriminalExploitation": "rl:NoKnownRisk",
+    "riskDrugAlcohol":          "rl:NoKnownRisk",
+    "riskEatingDisorder":       "rl:NoKnownRisk",
+    "riskMissing":              "rl:NoKnownRisk",
+    "riskSexualExploitation":   "rl:NoKnownRisk",
+    "riskToOthersPhysical":     "rl:NoKnownRisk",
+    "riskToOthersSexual":       "rl:NoKnownRisk",
+    "riskToOthersFire":         "rl:NoKnownRisk",
+    "riskToOthersAnimals":      "rl:NoKnownRisk",
+    "riskToOthersCriminal":     "rl:NoKnownRisk"
+  },
+
+  "hasActualPlacement": {
+    "@id": "ex:INVALID-003/actual",
+    "@type": "ActualPlacement",
+    "placementType": "pt:Foster",
+    "providerURN": "URN-2030",
+    "placementLocation": "NOT A POSTCODE",
+    "isLocationPreferred": true,
+    "isEducationContinuous": true,
+    "siblingsPlacedTogether": 0,
+    "totalWeeklyCost": 1500.00
+  },
+
+  "hasQualityAssurance": {
+    "@id": "ex:INVALID-003/qa",
+    "@type": "QualityAssurance",
+    "referralDate":  "2024-02-12",
+    "placementOfficerName": "Beth Green",
+    "placementDate": "2024-03-21",
+    "costDate":      "2024-03-25"
+  }
+}

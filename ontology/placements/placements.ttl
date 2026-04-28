@@ -61,7 +61,7 @@ skos:inScheme rdf:type owl:ObjectProperty .
 
 pl:additionalSupport rdf:type owl:ObjectProperty ;
                      rdfs:domain pl:PlacementRequirements ;
-                     rdfs:range st:SupportRequirement ;
+                     rdfs:range skos:Concept ;
                      rdfs:comment "Additional support provision required (e.g., additional supervision, therapeutic support, taxis to school). Multi-valued." ;
                      rdfs:label "additional support" ;
                      rdfs:seeAlso <https://socialcaredata.github.io/ontology/placements/vocab/support-type> .
@@ -261,7 +261,7 @@ pl:riskToOthersSexual rdf:type owl:ObjectProperty ,
 
 pl:specificCommunicationRequirement rdf:type owl:ObjectProperty ;
                                     rdfs:domain pl:PlacementRequirements ;
-                                    rdfs:range cn:CommunicationRequirement ;
+                                    rdfs:range skos:Concept ;
                                     rdfs:comment "Specific communication or language requirement (ESOL, BSL, Makaton, Other, None). Multi-valued: a placement may have several." ;
                                     rdfs:label "specific communication requirement" ;
                                     rdfs:seeAlso <https://socialcaredata.github.io/ontology/placements/vocab/communication-need> .
