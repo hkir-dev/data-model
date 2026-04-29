@@ -150,7 +150,7 @@
         sh:nodeKind sh:IRI ;
         sh:in ( yns:Yes yns:No yns:NotSpecified ) ;
         sh:minCount 1 ; sh:maxCount 1 ;
-        sh:message "communicationNeeds must be Yes / No / NotSpecified."
+        sh:message "communicationNeeds must be Yes / No / Not Specified."
     ] ;
     sh:property [
         sh:path pl:specificCommunicationRequirement ;
