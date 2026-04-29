@@ -1,21 +1,20 @@
 {
   "@context": "./context.jsonld",
-  "@id": "ex:INVALID-004",
+  "@id": "ex:INVALID-005",
   "@type": "Placement",
 
-  "childId": "INVALID004",
+  "placementId": "PLC-INVALID-005",
+  "childId": "INVALID005",
 
   "hasPlacementAvailability": {
-    "@id": "ex:INVALID-004/availability",
+    "@id": "ex:INVALID-005/availability",
     "@type": "PlacementAvailability",
-    "placementId": "PLC-INVALID-004",
     "neededBy": "pu:MoreThanFiveDays",
-    "isPreferredLocationLocal": false,
-    "outOfLAReason": "olr:CourtOrder"
+    "isPreferredLocationLocal": true
   },
 
   "hasPlacementRequirements": {
-    "@id": "ex:INVALID-004/requirements",
+    "@id": "ex:INVALID-005/requirements",
     "@type": "PlacementRequirements",
     "communicationNeeds": "yns:No",
     "specificCommunicationRequirement": ["cn:None"],
@@ -26,7 +25,7 @@
   },
 
   "hasPlacementRecommendation": {
-    "@id": "ex:INVALID-004/recommendation",
+    "@id": "ex:INVALID-005/recommendation",
     "@type": "PlacementRecommendation",
     "fosterCareSuitability": "sl:Preferred",
     "residentialCareSuitability": "sl:NotSpecified",
@@ -34,7 +33,7 @@
   },
 
   "hasRiskAssessment": {
-    "@id": "ex:INVALID-004/risk",
+    "@id": "ex:INVALID-005/risk",
     "@type": "RiskAssessment",
     "riskSelfHarm":             "rl:NoKnownRisk",
     "riskCriminalExploitation": "rl:NoKnownRisk",
@@ -50,19 +49,22 @@
   },
 
   "hasActualPlacement": {
-    "@id": "ex:INVALID-004/actual",
+    "@id": "ex:INVALID-005/actual",
     "@type": "ActualPlacement",
-    "placementType": "pt:Residential",
-    "providerURN": "URN-9999",
-    "placementLocation": "BS10",
+    "placementType": "pt:Foster",
+    "providerURN": "URN-7777",
+    "placementLocation": "TA3",
     "isLocationPreferred": true,
     "isEducationContinuous": true,
     "siblingsPlacedTogether": 0,
-    "totalWeeklyCost": 500000
+    "totalWeeklyCost":             1800.00,
+    "coreWeeklyCost":              1500.00,
+    "additionalSupportWeeklyCost":  350.00,
+    "otherWeeklyCost":              -50.00
   },
 
   "hasQualityAssurance": {
-    "@id": "ex:INVALID-004/qa",
+    "@id": "ex:INVALID-005/qa",
     "@type": "QualityAssurance",
     "referralDate":  "2024-02-12",
     "placementOfficerName": "Beth Green",

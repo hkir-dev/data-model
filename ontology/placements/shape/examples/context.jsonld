@@ -72,6 +72,10 @@
     "isEducationContinuous":   "pl:isEducationContinuous",
     "siblingsPlacedTogether":  { "@id": "pl:siblingsPlacedTogether", "@type": "xsd:nonNegativeInteger" },
     "totalWeeklyCost":         { "@id": "pl:totalWeeklyCost",        "@type": "xsd:decimal" },
+    "coreWeeklyCost":              { "@id": "pl:coreWeeklyCost",              "@type": "xsd:decimal" },
+    "additionalSupportWeeklyCost": { "@id": "pl:additionalSupportWeeklyCost", "@type": "xsd:decimal" },
+    "educationWeeklyCost":         { "@id": "pl:educationWeeklyCost",         "@type": "xsd:decimal" },
+    "otherWeeklyCost":             { "@id": "pl:otherWeeklyCost",             "@type": "xsd:decimal" },
 
     "referralDate":          { "@id": "pl:referralDate",     "@type": "xsd:date" },
     "referralOfficerName":   "pl:referralOfficerName",

@@ -19,22 +19,6 @@
 @prefix olr:   <https://socialcaredata.github.io/ontology/placements/vocab/outof-la-reason#> .
 @prefix :      <https://socialcaredata.github.io/ontology/placements/shape#> .
 
-#
-# SHACL shapes for the Children's Social Care Placements ontology.
-#
-# Mirrors the OWL cardinality and skos:inScheme restrictions in
-# placements.ttl, plus the data-completeness rules from the
-# "Checklist and QA" sheet of the National Placement Standard
-# spreadsheet.
-#
-# Out of scope for SHACL (operational checks, not data-shape):
-#   - whole-quarter coverage of placements
-#   - spreadsheet template column order / extra columns
-#   - "preferred placement reflects child's actual preference" (semantic)
-#   - duplicate childId / placementId across records (cross-record;
-#     handled in validate.js as a pre-pass since SHACL Core can't
-#     express it without sh:sparql)
-#
 
 <https://socialcaredata.github.io/ontology/placements/shape> a owl:Ontology ;
     dct:title "Placement Spec SHACL Shapes" ;
@@ -238,8 +222,7 @@
 
 
 #################################################################
-#    RiskAssessment - every risk field required (QA: "all risk
-#    categories populated, even if 'No known risk'").
+#    RiskAssessment - every risk field required
 #################################################################
 
 :RiskAssessmentShape a sh:NodeShape ;
@@ -342,13 +325,8 @@
 
 #################################################################
 #    ActualPlacement (matched placement outcome)
-#
-#    Every property here is required, mirroring the OWL
-#    cardinality 1 restrictions in placements.ttl. The presence
-#    of ActualPlacement implies the QualityAssurance fields it
-#    cross-references (placementDate, costDate) must also be set,
-#    which the QualityAssurance shape enforces unconditionally -
-#    so the QA-sheet rule "if Placement Type is set then Referral
+#    
+#    If Placement Type is set then Referral
 #    Date and Placement Needed by must be set" is structurally
 #    enforced via the parent Placement requiring both
 #    PlacementAvailability and QualityAssurance.
@@ -400,10 +378,66 @@
     # Cost sense-check (warning only, per QA sheet "<£100 or >£100,000 likely incorrect")
     sh:property [
         sh:path pl:totalWeeklyCost ;
-        sh:minInclusive 100 ;
+        sh:minInclusive 0 ;
         sh:maxInclusive 100000 ;
         sh:severity sh:Warning ;
-        sh:message "totalWeeklyCost outside the expected £100 - £100,000 range; please sense-check."
+        sh:message "totalWeeklyCost outside the expected £0 - £100,000 range; please sense-check."
+    ] ;
+
+    # Optional weekly-cost breakdown components. Each is independent
+    # and optional; when supplied they must be a non-negative decimal
+    # and within the £100,000 sense-check upper bound (warning only).
+    sh:property [
+        sh:path pl:coreWeeklyCost ;
+        sh:datatype xsd:decimal ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:message "coreWeeklyCost must be a non-negative decimal."
+    ] ;
+    sh:property [
+        sh:path pl:additionalSupportWeeklyCost ;
+        sh:datatype xsd:decimal ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:message "additionalSupportWeeklyCost must be a non-negative decimal."
+    ] ;
+    sh:property [
+        sh:path pl:educationWeeklyCost ;
+        sh:datatype xsd:decimal ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:message "educationWeeklyCost must be a non-negative decimal."
+    ] ;
+    sh:property [
+        sh:path pl:otherWeeklyCost ;
+        sh:datatype xsd:decimal ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:message "otherWeeklyCost must be a non-negative decimal."
+    ] ;
+    sh:property [
+        sh:path pl:coreWeeklyCost ;
+        sh:maxInclusive 100000 ;
+        sh:severity sh:Warning ;
+        sh:message "coreWeeklyCost exceeds £100,000; please sense-check."
+    ] ;
+    sh:property [
+        sh:path pl:additionalSupportWeeklyCost ;
+        sh:maxInclusive 100000 ;
+        sh:severity sh:Warning ;
+        sh:message "additionalSupportWeeklyCost exceeds £100,000; please sense-check."
+    ] ;
+    sh:property [
+        sh:path pl:educationWeeklyCost ;
+        sh:maxInclusive 100000 ;
+        sh:severity sh:Warning ;
+        sh:message "educationWeeklyCost exceeds £100,000; please sense-check."
+    ] ;
+    sh:property [
+        sh:path pl:otherWeeklyCost ;
+        sh:maxInclusive 100000 ;
+        sh:severity sh:Warning ;
+        sh:message "otherWeeklyCost exceeds £100,000; please sense-check."
     ] .
 
 

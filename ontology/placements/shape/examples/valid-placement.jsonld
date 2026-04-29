@@ -60,7 +60,11 @@
     "isLocationPreferred": true,
     "isEducationContinuous": false,
     "siblingsPlacedTogether": 1,
-    "totalWeeklyCost": 4500.00
+    "totalWeeklyCost":              4500.00,
+    "coreWeeklyCost":               2500.00,
+    "additionalSupportWeeklyCost":  1500.00,
+    "educationWeeklyCost":             0.00,
+    "otherWeeklyCost":               500.00
   },
 
   "hasQualityAssurance": {
