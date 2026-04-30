@@ -12,7 +12,7 @@
     "neededBy": "< 5 days",
     "siblingCount": 2,
     "isPreferredLocationLocal": false,
-    "outOfLAReason": "CourtOrder"
+    "outOfLAReason": "Court order"
   },
 
   "hasPlacementRequirements": {
@@ -21,9 +21,9 @@
     "communicationNeeds": "Not Specified",
     "specificCommunicationRequirement": ["ESOL"],
     "culturalNeeds": "Required",
-    "livingCompanions": "OnlyWithYoungerChildren",
+    "livingCompanions": "Only With Other younger children",
     "pets": "No",
-    "additionalSupport": "TaxisToSchool",
+    "additionalSupport": ["TaxisToSchool"],
     "deprivationOfLiberty": true
   },
 
@@ -31,40 +31,43 @@
     "@id": "ex:ABCD2012-001/recommendation",
     "@type": "PlacementRecommendation",
     "fosterCareSuitability": "Preferred",
-    "residentialCareSuitability": "SuitableButNotPreferred",
+    "residentialCareSuitability": "Suitable but not preferred",
     "supportedAccommodationSuitability": "Unsuitable"
   },
 
   "hasRiskAssessment": {
     "@id": "ex:ABCD2012-001/risk",
     "@type": "RiskAssessment",
-    "riskSelfHarm":             "RiskPresent",
-    "riskCriminalExploitation": "NoKnownRisk",
-    "riskDrugAlcohol":          "NoKnownRisk",
-    "riskEatingDisorder":       "NoKnownRisk",
-    "riskMissing":              "RiskPresent",
-    "riskSexualExploitation":   "NoKnownRisk",
-    "riskToOthersPhysical":     "NoKnownRisk",
-    "riskToOthersSexual":       "NoKnownRisk",
-    "riskToOthersFire":         "NoKnownRisk",
-    "riskToOthersAnimals":      "NoKnownRisk",
-    "riskToOthersCriminal":     "NoKnownRisk"
+    "riskSelfHarm":             "Risk Present",
+    "riskCriminalExploitation": "No known risk",
+    "riskDrugAlcohol":          "No known risk",
+    "riskEatingDisorder":       "No known risk",
+    "riskMissing":              "Risk Present",
+    "riskSexualExploitation":   "No known risk",
+    "riskToOthersPhysical":     "No known risk",
+    "riskToOthersSexual":       "No known risk",
+    "riskToOthersFire":         "No known risk",
+    "riskToOthersAnimals":      "No known risk",
+    "riskToOthersCriminal":     "No known risk",
+    "riskToOthersOther": [
+      "Verbal aggression toward staff during transitions"
+    ]
   },
 
   "hasActualPlacement": {
     "@id": "ex:ABCD2012-001/actual",
     "@type": "ActualPlacement",
-    "placementType": "Residential",
-    "providerURN": "ABCD10293002",
-    "placementLocation": "N18",
-    "isLocationPreferred": true,
-    "isEducationContinuous": false,
-    "siblingsPlacedTogether": 1,
-    "totalWeeklyCost":              4500.00,
     "coreWeeklyCost":               2500.00,
     "additionalSupportWeeklyCost":  1500.00,
     "educationWeeklyCost":             0.00,
-    "otherWeeklyCost":               500.00
+    "otherWeeklyCost":               500.00,
+    "totalWeeklyCost":              4500.00,
+    "placementLocation": "N18",
+    "isLocationPreferred": true,
+    "isEducationContinuous": false,
+    "providerURN": "ABCD10293002",
+    "siblingsPlacedTogether": 1,
+    "placementType": "Residential"
   },
 
   "hasQualityAssurance": {

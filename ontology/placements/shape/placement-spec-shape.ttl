@@ -433,10 +433,10 @@
     # Cost sense-check (warning only, per QA sheet "<£100 or >£100,000 likely incorrect")
     sh:property [
         sh:path pl:totalWeeklyCost ;
-        sh:minInclusive 0 ;
+        sh:minInclusive 100 ;
         sh:maxInclusive 100000 ;
         sh:severity sh:Warning ;
-        sh:message "totalWeeklyCost outside the expected £0 - £100,000 range; please sense-check."
+        sh:message "totalWeeklyCost outside the expected £100 - £100,000 range; please sense-check."
     ] ;
 
     # Optional weekly-cost breakdown components. Each is independent
