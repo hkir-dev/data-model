@@ -3,7 +3,6 @@
   "@id": "ex:ABCD2012-001",
   "@type": "Placement",
 
-  "placementId": "PLC-ABCD2012-001",
   "childId": "ABCD2012",
 
   "hasPlacementAvailability": {

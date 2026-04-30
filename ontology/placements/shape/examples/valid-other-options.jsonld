@@ -9,10 +9,10 @@
   "hasPlacementAvailability": {
     "@id": "ex:OTHER-001/availability",
     "@type": "PlacementAvailability",
-    "neededBy": "WithinFiveDays",
+    "neededBy": "< 5 days",
     "siblingCount": 0,
     "isPreferredLocationLocal": false,
-    "outOfLAReason":      "OutOfLAReasonOther",
+    "outOfLAReason":      "Other",
     "outOfLAReasonOther": [
       "Budget constraints in placing LA prevent in-area placement",
       "Specialist provider for the child's needs only available in neighbouring LA"
@@ -33,8 +33,8 @@
       "Specific dietary observance during religious festivals",
       "Access to community elder for weekly visits"
     ],
-    "livingCompanions": "NoPreference",
-    "pets": "YesCan",
+    "livingCompanions": "No preference",
+    "pets": "Yes-can",
     "additionalSupport":      ["TaxisToSchool", "TherapeuticSupport", "Other"],
     "additionalSupportOther": [
       "On-site psychiatric nurse availability",
@@ -47,25 +47,25 @@
   "hasPlacementRecommendation": {
     "@id": "ex:OTHER-001/recommendation",
     "@type": "PlacementRecommendation",
-    "fosterCareSuitability":             "NotSpecified",
+    "fosterCareSuitability":             "Not specified",
     "residentialCareSuitability":        "Preferred",
-    "supportedAccommodationSuitability": "NotSpecified"
+    "supportedAccommodationSuitability": "Not specified"
   },
 
   "hasRiskAssessment": {
     "@id": "ex:OTHER-001/risk",
     "@type": "RiskAssessment",
-    "riskSelfHarm":             "NoKnownRisk",
-    "riskCriminalExploitation": "NoKnownRisk",
-    "riskDrugAlcohol":          "NoKnownRisk",
-    "riskEatingDisorder":       "NoKnownRisk",
-    "riskMissing":              "NoKnownRisk",
-    "riskSexualExploitation":   "NoKnownRisk",
-    "riskToOthersPhysical":     "RiskPresent",
-    "riskToOthersSexual":       "NoKnownRisk",
-    "riskToOthersFire":         "NoKnownRisk",
-    "riskToOthersAnimals":      "NoKnownRisk",
-    "riskToOthersCriminal":     "NoKnownRisk",
+    "riskSelfHarm":             "No known risk",
+    "riskCriminalExploitation": "No known risk",
+    "riskDrugAlcohol":          "No known risk",
+    "riskEatingDisorder":       "No known risk",
+    "riskMissing":              "No known risk",
+    "riskSexualExploitation":   "No known risk",
+    "riskToOthersPhysical":     "Risk Present",
+    "riskToOthersSexual":       "No known risk",
+    "riskToOthersFire":         "No known risk",
+    "riskToOthersAnimals":      "No known risk",
+    "riskToOthersCriminal":     "No known risk",
     "riskOther": [
       "Sensitivity to sudden loud noises following past trauma"
     ],
